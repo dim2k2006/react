@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="Description" content="">
+        <meta name="Keywords" content="">
+
+        <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+
+        <title></title>
+
+
+        <style>
+            span {
+                display: block;
+            }
+        </style>
+            
+                    
+        <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+        <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+        <![endif]-->
+        <link rel="shortcut icon" href="images/favicon.png" type="image/x-icon">
+    </head>
+    <body>
+    
+
+
+        <div id="app"></div>
+    
+
+
+        <script src="https://fb.me/react-0.13.3.min.js"></script>
+        <script src="https://fb.me/JSXTransformer-0.13.3.js"></script>
+        <script type="text/jsx">
+            /** @jsx React.DOM */
+            var MessageBox = React.createClass({
+
+                getInitialState: function () {
+                    return {
+                        isVisible: true,
+                        messages: [
+                            'I like the world',
+                            'Coffee flavored ice cream is highly underrated',
+                            'My spoon is too big',
+                            'Tuesday is coming. Did you bring your coat?',
+                            'I am a banana',
+                        ]
+                    }
+                },
+
+
+                render: function () {
+                    var inlineStyles = {
+                        display: this.state.isVisible ? 'block' : 'none'
+                    };
+
+                    var subMessage = this.state.messages.map(function(message) {
+                        return <SubMessage message={message} />;
+                    });
+
+                    return (
+                        <div className='container jumbotron' style={inlineStyles}>
+                            <h2>Hello, World</h2>
+
+                            { this.state.messages }
+                        </div>
+                    );
+                }
+            });
+
+            var SubMessage = React.createClass({
+
+                propTypes: {
+                    message: React.PropTypes.string.isRequired
+                },
+
+                getDefaultProps: function () {
+                    return {
+                        message: 'It is good to see you!'
+                    }
+                },
+
+                render: function () {
+                    return (
+                        <div>{this.props.message}</div>
+                    );
+                }
+            });
+
+            var reactComponent = React.render(
+                <MessageBox />,
+                document.getElementById('app'),
+                function () {
+                    console.log('after render');
+                }
+            )
+        </script>
+    </body>
+</html>
